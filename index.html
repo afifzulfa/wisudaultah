@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selamat Cayanggg</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        background-color: #ffccff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        min-height: 80vh; /* Agar tidak terlalu pendek */
+        padding: 20px;
+      }
+      h1 {
+        font-size: 2.5em;
+        color: #ff1493;
+        max-width: 90%;
+        margin-bottom: 30px;
+      }
+      .image {
+        width: 60vw;
+        height: 60vw;
+        max-width: 250px;
+        max-height: 250px;
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      }
+      .message {
+        font-size: 1.2em;
+        color: #333;
+        margin-top: 10px;
+        max-width: 90%;
+        text-align: center;
+        padding-bottom: 20px; /* Ruang agar tombol tidak menutupi teks */
+      }
+      .slide {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .slide.active {
+        display: flex;
+        animation: fadeIn 1s ease-in-out;
+      }
+      button {
+        background-color: #ff1493;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 1.2em;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: 0.3s;
+        margin-top: 10px; /* Tombol tidak terlalu dekat ke bawah */
+      }
+      button:hover {
+        background-color: #ff69b4;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2em;
+        }
+        .message {
+          font-size: 1em;
+        }
+        button {
+          font-size: 1em;
+          padding: 10px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio class="song" id="background-music" autoplay loop>
+      <source src="./music/hbd.mp3" type="audio/mp3" />
+      Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <div class="container">
+      <div class="slide active">
+        <h1>Selamat Atas Kelulusannya & Ulang Tahun, Cayanggg</h1>
+        <img src="./img/6.jpeg" alt="Foto Pacar" class="image" />
+      </div>
+      <div class="slide">
+        <h1>Selamat Atas Kelulusan dan Ulang Tahun</h1>
+        <img src="./img/1.jpg" alt="Cinta dan Doa" class="image" />
+        <p class="message">
+          Hari ini adalah momen spesial karena dua kebahagiaan datang bersamaan.
+          Selamat atas kelulusanmu, sayang! Aku sangat bangga melihat perjuangan
+          dan kerja kerasmu membuahkan hasil. Semoga ini menjadi awal dari
+          perjalanan yang lebih luar biasa lagi.
+        </p>
+      </div>
+      <div class="slide">
+        <h1>Cinta dan Doa</h1>
+        <img src="./img/2.jpg" alt="Cinta dan Doa" class="image" />
+        <p class="message">
+          Ilmu yang telah kamu pelajari akan menjadi bekal berharga untuk masa
+          depanmu. Aku berharap ilmu yang kamu dapat bisa bermanfaat bagi banyak
+          orang. Jangan pernah berhenti belajar dan berkembang. Aku akan selalu
+          mendukung dan mendoakan kesuksesanmu. Aku mencintaimu sepenuh hati ❤️
+        </p>
+      </div>
+      <div class="slide">
+        <h1>Hari yang Spesial</h1>
+        <img src="./img/3.jpg" alt="Hari Spesial" class="image" />
+        <p class="message">
+          Hari ini juga istimewa karena ini adalah hari ulang tahunmu! Aku
+          bersyukur bisa merayakan hari ini bersamamu. Semoga kamu selalu diberi
+          kesehatan, kebahagiaan, dan keberkahan dalam setiap langkahmu.
+        </p>
+      </div>
+      <div class="slide">
+        <h1>Harapan untuk Masa Depan</h1>
+        <img src="./img/4.jpg" alt="Terima Kasih" class="image" />
+        <p class="message">
+          Di hari spesial ini, aku ingin kamu tahu betapa berharganya kamu
+          bagiku. Aku berharap segala impian dan harapanmu dapat terwujud. Aku
+          akan selalu ada untukmu, menemanimu dalam setiap perjalanan.
+        </p>
+      </div>
+      <div class="slide">
+        <h1>Terima Kasih dan Cinta</h1>
+        <img src="./img/5.jpg" alt="Terima Kasih" class="image" />
+        <p class="message">
+          Terima kasih karena telah menjadi bagian dari hidupku. Setiap momen
+          bersamamu selalu penuh makna dan kebahagiaan. Aku mencintaimu dengan
+          sepenuh hati, dan semoga kita selalu bisa menciptakan kenangan indah
+          bersama.
+        </p>
+      </div>
+    </div>
+
+    <button id="nextButton" onclick="nextSlide()">Next</button>
+
+    <script>
+      let currentSlide = 0;
+      function nextSlide() {
+        const slides = document.querySelectorAll(".slide");
+        const button = document.getElementById("nextButton");
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+
+        if (currentSlide === slides.length - 1) {
+          button.innerText = "Lihat Kado";
+          button.onclick = function () {
+            window.location.href = "./kado.html";
+          };
+        }
+      }
+    </script>
+  </body>
+</html>
